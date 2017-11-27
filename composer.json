@@ -1,0 +1,19 @@
+{
+    "name": "gexingw/lumen-request-validator",
+    "description": "Lumen request validator",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "WangSF",
+            "email": "wolfs_9@hotmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "GeXingW\\LumenValidator\\": "./src/"
+        }
+    }
+}
