@@ -21,7 +21,7 @@ class RequestValidatorProvider extends ServiceProvider
          * 1.Prepare for the request validation
          * 2.Handle Request validation
          */
-        $this->app->afterResolving(ValidatorRequest::class, function (ValidatorRequest $request, $instance) {
+        $this->app->afterResolving(ValidatorRequest::class, function (ValidatorRequest $request, $app) {
 
             /**
              * Setup current request validations

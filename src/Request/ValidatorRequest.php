@@ -84,6 +84,28 @@ class ValidatorRequest extends Request implements RequestValidatorInterface
     }
 
     /**
+     * Setup current request data.
+     * Refer to the implementation of ssi-anik/form-request.
+     * Link: https://github.com/ssi-anik/form-request/blob/master/src/FormRequestServiceProvider.php
+     */
+    public function _setData()
+    {
+        $requestInstance = $this->_getRequestInstance();
+
+        $files = $requestInstance->files->all();
+        $files = is_array($files) ? array_filter($files) : $files;
+        $this->initialize($requestInstance->query(),
+            $requestInstance->all(),
+            $requestInstance->attributes->all(),
+            $requestInstance->cookies->all(),
+            $files,
+            $requestInstance->server->all(),
+            $requestInstance->getContent()
+        );
+        $this->setJson($requestInstance->json());
+    }
+
+    /**
      * Setup request validator:
      * 1.Setup validation rules
      * 2.Setup validation messages
@@ -100,6 +122,8 @@ class ValidatorRequest extends Request implements RequestValidatorInterface
             $this->_setMessages();
 
             $this->_setAttributes();
+
+            $this->_setData();
 
         } catch (\RuntimeException $e) {
 
@@ -135,6 +159,15 @@ class ValidatorRequest extends Request implements RequestValidatorInterface
     protected function _getValidatorInstance()
     {
         return app('validator');
+    }
+
+    /**
+     * Get request instance
+     * @return \Laravel\Lumen\Application|mixed
+     */
+    protected function _getRequestInstance()
+    {
+        return app('request');
     }
 
 }
