@@ -28,7 +28,7 @@ class ValidatorRequest extends Request implements RequestValidatorInterface
      *
      * @return array
      */
-    protected function _rules(): array
+    protected function _rules()
     {
         return [];
     }
@@ -38,7 +38,7 @@ class ValidatorRequest extends Request implements RequestValidatorInterface
      *
      * @return array
      */
-    protected function _messages(): array
+    protected function _messages()
     {
         return [];
     }
@@ -48,7 +48,7 @@ class ValidatorRequest extends Request implements RequestValidatorInterface
      *
      * @return array
      */
-    protected function _attributes(): array
+    protected function _attributes()
     {
         return [];
     }
