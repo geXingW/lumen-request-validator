@@ -102,7 +102,13 @@ class ValidatorRequest extends Request implements RequestValidatorInterface
             $requestInstance->server->all(),
             $requestInstance->getContent()
         );
-        $this->setJson($requestInstance->json());
+
+        // Fixed for Lumen 5.3 setJson method not exist.
+        if (!method_exists($this, 'setJson')) {
+            $this->json = $requestInstance->json();
+        } else {
+            $this->setJson($requestInstance->json());
+        }
     }
 
     /**
